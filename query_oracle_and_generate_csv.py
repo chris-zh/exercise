@@ -53,47 +53,12 @@ SELECT DISTINCT '-',
                  ' "'||LENGTH(REPLACE(SUBSTR(ENV.SR_HEAD_LINE, 10),' ',''))||'"'
    FROM EBAO_NEXT_VERSION ENV WHERE 1=1 
    AND env.is_done = 0 """
+
 def get_sr():
     conn = cx_Oracle.connect('tpdev/tpdevenvpwd@10.1.101.35/ORA35')
     cursor = conn.cursor()
     cursor.execute("""
-SELECT 'Taiping',
-       ' "'||'NewTask'||'"',
-       ' "'||'5-Design Doc'||'"',
-       ' "'||T.SR_NO||'"',
-       ' "'||T.SR_HEAD_LINE||'"',
-       ' "'||T.SR_HEAD_LINE||'"',
-       ' "'||'保全'||'"',
-       ' "'||T.SR_EMP||'"',
-       ' "'||T.SR_EMP||'"',
-       ' "'||'40'||'"',
-       ' "'||'haidong.han'||'"',
-       ' "'||'No'||'"',
-       ' "'||TO_CHAR(TRUNC(SYSDATE),'YYYY-MM-DD')||'"',
-       ' "'||TO_CHAR(TRUNC(SYSDATE + 40),'YYYY-MM-DD')||'"',
-       ' "'||''||'"',
-       ' "'||'1-Critical'||'"',
-       ' "'||'1-Resolve Immediately'||'"',
-       ' "'||'TP_MAIN_V3.84.999'||'"',
-       ' "'||''||'"',
-       ' "'||''||'"',
-       ' "'||''||'"',
-       ' "'||'Submitted'||'"',
-       ' "'||0||'"',
-       ' "'||0||'"',
-       ' "'||0||'"',
-       ' "'||1||'"',
-       ' "'||0||'"',
-       ' "'||0||'"',
-       ' "'||0||'"',
-       ' "'||0||'"',
-       ' "'||'NO'||'"',
-       ' "'||0||'"',
-       ' "'||LENGTH(T.SR_HEAD_LINE)||'"'
-  FROM EBAO_NEXT_VERSION T
- WHERE T.TASK_TYPE = '设计'
-
- and t.is_done = 0
+SELECT * FROM T_USER
 """)
     all_data = cursor.fetchall()
     #print(all_data)
